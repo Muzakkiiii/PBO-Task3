@@ -1,0 +1,101 @@
+package Polymorphism;
+
+public class Square extends Shapes {
+    @Override
+    public void draw(){
+        System.out.println("Square draw");
+    }
+    @Override
+    public void erase(){
+        System.out.println("Square Eraseee");
+    }
+}
+package Polymorphism;
+
+public class Shapes {
+    public void draw() {}
+    public void erase(){}
+    public void message() {
+        System.out.println("Pesan ini dari shape");
+    }
+    public void succesShapes() {
+        System.out.println("Berhasil print shape");
+    }
+
+    private static RandomShapeGenerator gen =
+            new RandomShapeGenerator();
+
+    public static void main(String[] args){
+
+        Shapes shapemessage = new Shapes();
+        shapemessage.message();
+
+        Shapes sucshape = new Shapes();
+        sucshape.succesShapes();
+
+        Cycle jumlahroda = new Cycle();
+        jumlahroda.ride();
+
+        Shapes[] s = new Shapes[9];
+        for(int i = 0; i < s.length; i++)
+            s[i] = gen.next();
+        for(Shapes shp : s) {
+            shp.draw();
+        }
+
+    }
+}
+
+package Polymorphism;
+
+import java.util.Random;
+public class RandomShapeGenerator {
+    private Random rand = new Random(47);
+    public Shapes next()
+    {
+        switch(rand.nextInt(3))
+        {
+            default:
+            case 0: return new Circle();
+            case 1: return new Square();
+            case 2: return new Triangle();
+        }
+    }
+}
+package Polymorphism;
+
+public class Cycle extends Circle{
+    //ceritanya becak :D
+    public int wheels = 3;
+    public int wheel(){
+        return wheels;
+    }
+    public void ride(){
+        System.out.println("Mempunyai roda : " + wheels);
+    }
+}
+package Polymorphism;
+
+public class Triangle extends Shapes {
+    @Override
+    public void draw(){
+        System.out.println("Triangle draw");
+    }
+    @Override
+    public void erase(){
+        System.out.println("Triangle Eraseee");
+    }
+}
+package Polymorphism;
+
+public class Circle extends Shapes {
+    @Override
+    public void draw(){
+        System.out.println("Circle draw");
+    }
+    @Override
+    public void erase(){
+        System.out.println("Circle Eraseee");
+    }
+}
+
